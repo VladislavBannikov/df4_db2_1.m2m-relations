@@ -10,22 +10,24 @@ class Article(models.Model):
     class Meta:
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
+        ordering = ("-published_at",)
 
     def __str__(self):
         return self.title
 
+    def get_scopes(self):
+        return self.scopearticle_set.all().values("is_main", "scope__topic")
+
 
 class ScopeArticle(models.Model):
-    is_main = models.BooleanField(verbose_name="Основной",)
+    is_main = models.BooleanField(verbose_name="Основной", )
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     scope = models.ForeignKey('Scope', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Тематика статьи'
         verbose_name_plural = 'Тематики статей'
-
-    # def __str__(self):
-    #     return
+        ordering = ("-is_main", "scope__topic",)
 
 
 class Scope(models.Model):
