@@ -41,3 +41,7 @@ class ScopeInline(admin.TabularInline):
 class ArticleAdmin(admin.ModelAdmin):
     inlines = [ScopeInline]
     pass
+
+@admin.register(Scope)
+class ScopeAdmin(admin.ModelAdmin):
+    pass
