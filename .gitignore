@@ -5,7 +5,6 @@ Thumbs.db
 *_backup
 *.db
 /media/
-**/migrations/
 secret.yaml
 secret.json
 *.exe
